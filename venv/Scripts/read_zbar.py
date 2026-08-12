@@ -1,4 +1,4 @@
-#!C:\QR_Access_PRO\venv\Scripts\python.exe
+#!C:\Users\Anibal\Proyectos_GitHub\QR_Actual\venv\Scripts\python.exe
 from __future__ import print_function
 
 import argparse

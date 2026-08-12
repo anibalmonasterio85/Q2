@@ -8,7 +8,7 @@ from config.database import execute_query
 from datetime import datetime, timedelta
 
 
-def create_log(qr_texto, resultado, user_id=None):
+def create_log(qr_texto, resultado, user_id=None, **kwargs):
     """Create an access log entry."""
     query = """
         INSERT INTO accesos_log (qr_texto, resultado, user_id)

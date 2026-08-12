@@ -50,13 +50,26 @@ QR Access Pro utiliza una base de datos **MySQL** robusta en segundo plano para 
 
 ## 4. Uso del Escáner Físico
 
-El escaner corre de forma nativa e independiente de la web. Este es el sistema que estaría físicamente en la caseta de acceso leyendo la cámara USB.
+El escáner funciona de forma independiente al panel web. Es el componente que está junto a la puerta y valida los códigos QR con MySQL.
 
-1. Abre **una NUEVA** ventana de PowerShell (sin cerrar la de la página web).
-2. Ve a la carpeta, entra a tu base virtual e inicia el Python de la cámara:
+1. Abre **una NUEVA** ventana de PowerShell (sin cerrar la del panel web).
+2. Navega a la carpeta raíz del proyecto, activa el entorno virtual e inicia el escáner:
    ```powershell
    cd C:\QR_Access_PRO
    .\venv\Scripts\Activate.ps1
    python scanner\scanner_fisico.py
    ```
-3. Automáticamente se encenderá el láser de la cámara, listo para apuntar un correo electrónico desde un móvil e interceptar el ingreso en tiempo real contra MySQL. Presiona la tecla `q` sobre la ventana de la cámara para apagar el escáner.
+3. Si necesitas cambiar de cámara, añade el índice:
+   ```powershell
+   python scanner\scanner_fisico.py 1
+   ```
+4. El escáner mostrará una ventana con el feed de la cámara. Señala un código QR desde el celular y el sistema lo validará automáticamente.
+
+### Controles del escáner
+- `q`: salir del escáner.
+- `s`: guardar una captura de pantalla en el directorio actual.
+
+### Comportamiento de lectura
+- Se pueden detectar múltiples códigos en el mismo frame.
+- El mismo QR no se procesa más de una vez mientras dure el cooldown.
+- Si el QR no existe, el sistema mostrará `ACCESO DENEGADO` y lo registrará en los accesos.
